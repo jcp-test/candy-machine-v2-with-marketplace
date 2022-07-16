@@ -1,5 +1,5 @@
 export enum RouteName {
-  home = "/",
+  HomePage = "/",
   marketplace = "/marketplace",
   marketplaceMint = "/marketplace/:tokenMint",
   sell = "/sell",

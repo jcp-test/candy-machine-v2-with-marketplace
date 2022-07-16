@@ -10,27 +10,29 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import styled from "styled-components";
 import { RouteName } from "../constant/routeNames";
+import MobileNavigation from "./NavBar/MobileNavigation";
+import Navigation from "./NavBar/Navigation";
 
 interface TopNavProps {
   showCurrencyToggle?: boolean;
 }
 
 const ROUTES = [
-  { url: RouteName.home, name: "Home" },
+  { url: RouteName.HomePage, name: "Home" },
   { url: RouteName.marketplace, name: "Marketplace" },
   { url: RouteName.sell, name: "Sell" },
 ];
 
-const OTHER_LAYOUT_ROUTES = [
-  { url: RouteName.customToken, name: "Custom Token Marketplace" },
-  { url: RouteName.multipleCollection, name: "Multi Collection Marketplace" },
-  { url: RouteName.marketplaceWithUrl, name: "Marketplace With URL" },
-  {
-    url: RouteName.multipleCurrencyMarketplace,
-    name: "Multi Currency Marketplace",
-  },
-  { url: RouteName.multipleCurrencySell, name: "Multi Currency Sell" },
-];
+// const OTHER_LAYOUT_ROUTES = [
+//   { url: RouteName.customToken, name: "Custom Token Marketplace" },
+//   { url: RouteName.multipleCollection, name: "Multi Collection Marketplace" },
+//   { url: RouteName.marketplaceWithUrl, name: "Marketplace With URL" },
+//   {
+//     url: RouteName.multipleCurrencyMarketplace,
+//     name: "Multi Currency Marketplace",
+//   },
+//   { url: RouteName.multipleCurrencySell, name: "Multi Currency Sell" },
+// ];
 
 const TopNav: React.FC<TopNavProps> = ({ showCurrencyToggle = false }) => {
   const wallet = useAnchorWallet();
@@ -68,11 +70,13 @@ const TopNav: React.FC<TopNavProps> = ({ showCurrencyToggle = false }) => {
   return (
     <HeaderBar>
       <Logo>
-        <Link to={RouteName.home}>
-          <img alt="" src="/logo.png" />
+        <Link to={RouteName.HomePage}>
+        <img alt="" src="/Homeqube-logo-black_small 1.svg" />
         </Link>
       </Logo>
-      <Menu>
+      <MobileNavigation />
+      <Navigation />
+      {/* <Menu>
         {ROUTES.map((item) => (
           <li key={item.url} className={pathname === item.url ? "active" : ""}>
             <Link to={item.url}>{item.name}</Link>
@@ -113,12 +117,12 @@ const TopNav: React.FC<TopNavProps> = ({ showCurrencyToggle = false }) => {
           </Popper>
         </DropdownAnchor>
       </Menu>
-      {showCurrencyToggle && <CurrencyToggle />}
+      {showCurrencyToggle && <CurrencyToggle />} */}
       <Wallet>
         {wallet ? (
-          <ConnectButton />
+          <ConnectButton className="wallet-width" />
         ) : (
-          <ConnectButton>Connect Wallet</ConnectButton>
+          <ConnectButton className="wallet-width">Connect Wallet</ConnectButton>
         )}
       </Wallet>
     </HeaderBar>
@@ -131,17 +135,16 @@ const HeaderBar = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+ 
+  padding-right: 4%;
+  padding-left: 4%;
 `;
 
 const DropdownAnchor = styled.li`
   cursor: pointer;
-  transition: color 0.3s;
 
-  &:hover,
-  &:active {
+  &:hover {
     color: rgb(131, 146, 161);
-    border-bottom: 4px solid var(--title-text-color);
   }
 
   > div {
@@ -150,14 +153,15 @@ const DropdownAnchor = styled.li`
 
   .MuiList-root {
     margin-top: 15px;
-  }
-  a {
-    padding-top: 4px;
-    padding-bottom: 4px;
 
-    &:hover {
-      border-bottom: 0px;
-      color: #fff;
+    a {
+      padding-top: 4px;
+      padding-bottom: 4px;
+
+      &:hover {
+        border-bottom: 0px;
+        color: #fff;
+      }
     }
   }
 `;
@@ -171,8 +175,11 @@ const Wallet = styled.ul`
 const ConnectButton = styled(WalletMultiButton)`
   border-radius: 18px !important;
   padding: 6px 16px;
+  border-radius: 50rem !important;
   background-color: #4e44ce;
   margin: 0 auto;
+  margin-top: 1.5rem !important;
+  font-family: "Rajdhani", sans-serif !important;
 `;
 
 const Logo = styled.div`
@@ -180,7 +187,7 @@ const Logo = styled.div`
   margin-right: 10px;
 
   img {
-    height: 60px;
+    height: 7rem;
   }
 `;
 
@@ -189,13 +196,6 @@ const Menu = styled.ul`
   display: inline-flex;
   flex: 1 0 auto;
   margin-bottom: 0;
-
-  .active {
-    border-bottom: 4px solid var(--title-text-color);
-  }
-  .active-submenu {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
 
   li {
     margin: 0 12px;
@@ -217,12 +217,10 @@ const Menu = styled.ul`
       }
     }
 
-    &:hover,
-    &:active {
-      border-bottom: 4px solid var(--title-text-color);
-    }
-    &:hover > a {
+    a:hover,
+    a:active {
       color: rgb(131, 146, 161);
+      border-bottom: 4px solid var(--title-text-color);
     }
   }
 `;

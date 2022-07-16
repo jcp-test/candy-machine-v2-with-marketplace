@@ -34,7 +34,7 @@ import MultiCurrencySell from "./views/MultiCurrencySell";
 import MyCollection from "./views/MyCollection";
 import SingleOrder from "./views/SingleOrder";
 import { RouteName } from "./constant/routeNames";
-
+import HomePage from "./views/HomePage";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const candyMachineId = new anchor.web3.PublicKey(
@@ -119,16 +119,11 @@ const App = () => {
                   <MainContainer>
                     <Routes>
                       <Route
-                        path={RouteName.home}
+                        path={RouteName.HomePage}
                         element={
                           <>
                             <TopNav />
-                            <Home
-                              candyMachineId={candyMachineId}
-                              connection={connection}
-                              txTimeout={txTimeout}
-                              rpcHost={rpcHost}
-                            />
+                            <HomePage />
                           </>
                         }
                       />
