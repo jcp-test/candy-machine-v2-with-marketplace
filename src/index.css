@@ -795,7 +795,7 @@ a:active {
   .hamburger {
     display: block;
     position: absolute;
-    right: 0%;
+    right: 1.5%;
     cursor: pointer;
   }
 }
@@ -846,17 +846,6 @@ a:active {
   }
 }
 
-@media (min-width: 576px) {
-  /* .conwid-50{
-    width: 50%;
-  }
-  .conwid-25{
-    width: 25%;
-  }
-  .content{
-    display: flex;
-  } */
-}
 @media (min-width: 768px) {
   .conwid-50 {
     width: 70%;
@@ -899,7 +888,7 @@ a:active {
 }
 
 main {
-  min-height: calc(100vh - 211px - 58px);
+  min-height: calc(100.5vh - 269px);
 }
 .name-container {
   height: 62px;

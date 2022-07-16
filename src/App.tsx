@@ -36,6 +36,11 @@ import SingleOrder from "./views/SingleOrder";
 import { RouteName } from "./constant/routeNames";
 import HomePage from "./views/HomePage";
 import ClaimQubes from "./views/ClaimQubes";
+import Footer from "./components/Footer";
+import StructuralLegaciesFilter from "./views/FilterStructuralLegacies";
+import HomeDesignFilter from "./views/FilterHomeDesign";
+import SystemArchitectureFilter from "./views/FilterSystemArchitecture";
+import ProductsFilter from "./views/FilterProducts";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const candyMachineId = new anchor.web3.PublicKey(
@@ -137,6 +142,46 @@ const App = () => {
                           </>
                         }
                       />
+
+                      <Route
+                        path={RouteName.StructuralLegaciesFilter}
+                        element={
+                          <>
+                            <TopNav />
+                            <StructuralLegaciesFilter />
+                          </>
+                        }
+                      />
+
+                      <Route
+                        path={RouteName.SystemArchitectureFilter}
+                        element={
+                          <>
+                            <TopNav />
+                            <SystemArchitectureFilter />
+                          </>
+                        }
+                      />
+                      <Route
+                        path={RouteName.HomeDesignFilter}
+                        element={
+                          <>
+                            <TopNav />
+                            <HomeDesignFilter />
+                          </>
+                        }
+                      />
+
+                      <Route
+                        path={RouteName.ProductsFilter}
+                        element={
+                          <>
+                            <TopNav />
+                            <ProductsFilter />
+                          </>
+                        }
+                      />
+
                       <Route
                         path={RouteName.ClaimQubes}
                         element={
@@ -169,7 +214,6 @@ const App = () => {
                         element={
                           <>
                             <TopNav />
-                            
                           </>
                         }
                       />
@@ -204,6 +248,7 @@ const App = () => {
                   </MainContainer>
                 </main>
               </CandyShopDataValidator>
+              <Footer />
             </WalletModalProvider>
           </CurrencyProvider>
         </WalletProvider>
@@ -215,11 +260,7 @@ const App = () => {
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  margin-right: 4%;
-  margin-left: 4%;
+
   text-align: center;
   justify-content: center;
 `;

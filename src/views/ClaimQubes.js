@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import * as emailjs from "emailjs-com";
+import * as emailjs from "emailjs-com";
 
 class ClaimQubes extends Component {
   state = {
@@ -21,23 +21,23 @@ class ClaimQubes extends Component {
       isTrueVal,
     });
   };
-  // onSubmit = () => {
-  //   const { URL, user_email, user_name } = this.state;
-  //   console.log("Here is the site url: ", URL);
-  //   let templateParams = {
-  //     from_name: user_email,
-  //     to_name: user_email,
-  //     // subject: user_name,
-  //     message: URL,
-  //   };
-  //   emailjs.send(
-  //     "service_7lhctnf",
-  //     "template_hb7zy83",
-  //     templateParams,
-  //     "GAyktw5BJ0aDCY2Wb"
-  //   );
-  //   this.resetForm();
-  // };
+  onSubmit = () => {
+    const { URL, user_email, user_name } = this.state;
+    console.log("Here is the site url: ", URL);
+    let templateParams = {
+      from_name: user_email,
+      to_name: user_email,
+      // subject: user_name,
+      message: URL,
+    };
+    emailjs.send(
+      "service_7lhctnf",
+      "template_hb7zy83",
+      templateParams,
+      "GAyktw5BJ0aDCY2Wb"
+    );
+    this.resetForm();
+  };
   resetForm() {
     this.setState({
       URL: "",
