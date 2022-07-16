@@ -7,13 +7,14 @@ import styled from "styled-components";
 const MarketplaceWithFilter: React.FC = () => {
   const wallet = useAnchorWallet();
 
+
   return (
     <DesContainer>
       <Stat
         candyShop={candyShop}
-        title={"Marketplace"}
+        title={""}
         description={
-          "Allow users to filter by NFT collection. Configure which NFTs collections to enable in My Shop."
+          ""
         }
         style={{ paddingBottom: 50 }}
       />
@@ -22,6 +23,7 @@ const MarketplaceWithFilter: React.FC = () => {
         candyShop={candyShop}
         walletConnectComponent={<WalletMultiButton />}
         filters={FILTERS}
+        defaultFilter = {{ collection: "1", shop: "" }}
       />
     </DesContainer>
   );
@@ -30,8 +32,39 @@ const MarketplaceWithFilter: React.FC = () => {
 export default MarketplaceWithFilter;
 
 const FILTERS = [
-  { name: "Puppies", collectionId: "1", identifier: 2036309415 },
-  { name: "Shibas", collectionId: "2", identifier: 1235887132 },
+  {
+    name: "Structural Legacies",
+    collectionId: "1",
+    identifier: [-354695101, -1775657236],
+    qubeClaims :"",
+    description:
+      "INTRODUCING HOMEQUBE’S STRUCTURAL LEGACY SYSTEM. EACH STRUCTURAL IS UNIQUE. WE GENERATED 2500 UNIQUE COMBINATIONS (WITHOUT CANTILEVER) FROM OUR SYSTEMS ARCHITECTURE PLATFORM (SAP). THIS LEGACY SYSTEM CAN BE USED TO BUILD LIMITLESS DESIGN CONFIGURATIONS FOR FLAT TOPOGRAPHIES AND UP TO 3 STORY HOUSING, ALLOWING OPEN ARCHITECTURE. OUR COMPOSITE MIX IS MORE SUSTAINABLE, WEATHER RESILIENT, AND EMITS MUCH LESS CARBON THAN REINFORCED CONCRETE/STEEL, AND CAN BE ERGONOMICALLY ASSEMBLED AT THE SITE.",
+  },
+  {
+    name: "Home Designs",
+    collectionId: "2",
+    identifier: 1462698944,
+    qubeClaims :"",
+    description:
+      "YOU CAN PLACE VARIOUS HOME DESIGNS HERE THAT FIT SYSTEM ARCHITECTURE BOTTOMS-UP APPROACHES.",
+  },
+  {
+    name: "SYSTEM ARCHITECTURE",
+    collectionId: "3",
+    identifier: -16541584,
+    qubeClaims :"",
+    description:
+      "YOU CAN PLACE VARIOUS HOME DESIGNS “PARTS” THAT FIT SYSTEM ARCHITECTURE BOTTOMS-UP APPROACHES. ",
+  },
+
+  {
+    name: "PRODUCTS",
+    collectionId: "4",
+    identifier: [-1434943395, 393799738],
+    qubeClaims :"",
+    description:
+      "YOU CAN PLACE VARIOUS “PRODCUTS” THAT FIT SYSTEM ARCHITECTURE BOTTOMS-UP APPROACHES.",
+  },
 ];
 
 const DesContainer = styled.div`

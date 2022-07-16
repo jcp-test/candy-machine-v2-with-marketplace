@@ -35,6 +35,7 @@ import MyCollection from "./views/MyCollection";
 import SingleOrder from "./views/SingleOrder";
 import { RouteName } from "./constant/routeNames";
 import HomePage from "./views/HomePage";
+import ClaimQubes from "./views/ClaimQubes";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const candyMachineId = new anchor.web3.PublicKey(
@@ -128,20 +129,20 @@ const App = () => {
                         }
                       />
                       <Route
-                        path={RouteName.marketplaceMint}
+                        path={RouteName.MarketplaceWithFilter}
                         element={
                           <>
                             <TopNav />
-                            <SingleOrder />
+                            <MarketplaceWithFilter />
                           </>
                         }
                       />
                       <Route
-                        path={RouteName.marketplace}
+                        path={RouteName.ClaimQubes}
                         element={
                           <>
                             <TopNav />
-                            <Marketplace />
+                            <ClaimQubes />
                           </>
                         }
                       />
@@ -168,7 +169,7 @@ const App = () => {
                         element={
                           <>
                             <TopNav />
-                            <MarketplaceWithFilter />
+                            
                           </>
                         }
                       />
