@@ -9,7 +9,7 @@ import { Empty } from '../../components/Empty';
 import { ORDER_FETCH_LIMIT, BACKGROUND_UPDATE_LIMIT } from '../../constant/Orders';
 import { AuctionActionsStatus } from '../../constant';
 import { useValidateStatus } from '../../hooks/useValidateStatus';
-import { useUpdateSubject } from '../Context';
+// import { useUpdateSubject } from '../Context';
 
 const Logger = 'CandyShopUI/Auctions';
 
@@ -32,7 +32,7 @@ export const Auctions: React.FC<AuctionsProps> = ({ walletConnectComponent, wall
   const [startIndex, setStartIndex] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useUpdateSubject(ShopStatusType.Auction, candyShop.candyShopAddress);
+  // useUpdateSubject(ShopStatusType.Auction, candyShop.candyShopAddress);
   const updateStatus = useValidateStatus(AuctionActionsStatus);
   const updateStatusRef = useRef<number>(updateStatus);
 

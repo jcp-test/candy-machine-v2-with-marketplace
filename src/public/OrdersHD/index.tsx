@@ -21,7 +21,7 @@ import { CollectionFilter as CollectionFilterComponent } from '../../components/
 import { ShopFilter as ShopFilterComponent } from '../../components/ShopFilter';
 
 import { useValidateStatus } from '../../hooks/useValidateStatus';
-import { useUpdateSubject } from '../Context';
+// import { useUpdateSubject } from '../Context';
 import { CollectionFilter, ShopFilter, OrderDefaultFilter } from '../../model';
 import { removeDuplicate } from '../../utils/array';
 import { OrdersActionsStatus } from '../../constant';
@@ -85,7 +85,7 @@ export const Orders: React.FC<OrdersProps> = ({
   const loadingMountRef = useRef(false);
 
   const updateOrderStatus = useValidateStatus(OrdersActionsStatus);
-  useUpdateSubject(ShopStatusType.Order, candyShop.candyShopAddress);
+  // useUpdateSubject(ShopStatusType.Order, candyShop.candyShopAddress);
 
   const onSearchNft = useCallback((nftName: string) => {
     setNftKeyword(nftName);
@@ -100,7 +100,7 @@ export const Orders: React.FC<OrdersProps> = ({
           limit: ORDER_FETCH_LIMIT,
           sellerAddress,
           identifiers: getUniqueIdentifiers(identifiers, collectionFilter?.identifier),
-          attribute: collectionFilter?.attribute,
+          // attribute: collectionFilter?.attribute,
           collectionId: selectedCollection?.id,
           candyShopAddress: selectedShop?.candyShopAddress || shopFilter?.shopId,
           // nftName: nftKeyword

@@ -25,7 +25,7 @@ import {
 
 import { LoadStatus, SellActionsStatus } from '../../constant';
 import { useValidateStatus } from '../../hooks/useValidateStatus';
-import { useUpdateSubject } from '../../public/Context';
+// import { useUpdateSubject } from '../../public/Context';
 
 const Logger = 'CandyShopUI/Sell';
 
@@ -54,7 +54,7 @@ export const Sell: React.FC<SellProps> = ({ wallet, walletConnectComponent, styl
   const firstBatchNFTLoaded = useRef<boolean>(false);
 
   const sellUpdateStatus = useValidateStatus(SellActionsStatus);
-  useUpdateSubject(ShopStatusType.Order, candyShop.candyShopAddress);
+  // useUpdateSubject(ShopStatusType.Order, candyShop.candyShopAddress);
 
   useEffect(() => {
     if (!walletPublicKey) return;

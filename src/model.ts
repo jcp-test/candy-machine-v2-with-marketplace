@@ -13,7 +13,8 @@ export interface CollectionFilter {
   name: string;
   collectionId: string;
   identifier: number | Array<number>;
-  attribute?: { [key: string]: string };
+  // attribute?: { [key: string]: string };
+  description: string;
 }
 
 export interface ShopFilter {
