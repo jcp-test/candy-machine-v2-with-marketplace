@@ -1,4 +1,4 @@
-// import '@google/model-viewer';
+import '@google/model-viewer'
 import { Order } from '@liqnft/candy-shop-types';
 import { LiqImage } from '../LiqImage';
 import React from 'react';
@@ -14,19 +14,18 @@ interface ViewerProps {
 export const Viewer: React.FC<ViewerProps> = ({ order }) => {
   
   if (order && order.nftAnimationLink && order.nftAnimationLink.includes('ext=glb')) {
-    // <ScriptTag type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" />
     return (
-      <></>
-      // <model-viewer
-      //   style={{ display: 'block', width: '100%', height: '100%' }}
-      //   bounds="tight"
-      //   src={order.nftAnimationLink}
-      //   ar
-      //   ar-modes="webxr scene-viewer quick-look"
-      //   camera-controls
-      //   environment-image="neutral"
-      //   shadow-intensity="1"
-      // ></model-viewer>
+
+      <model-viewer
+      style={{ display: 'block', width: '100%', height: '100%' }}
+      bounds="tight"
+      src={order.nftAnimationLink}
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      environment-image="neutral"
+      shadow-intensity="1"
+      ></model-viewer>
     );
   }
 
