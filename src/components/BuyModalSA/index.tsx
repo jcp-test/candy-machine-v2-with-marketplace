@@ -3,7 +3,7 @@ import { Order as OrderSchema } from '@liqnft/candy-shop-types';
 import { BN, web3 } from '@project-serum/anchor';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
 import { Modal } from '../Modal';
-import { PoweredByInBuyModal } from '../PoweredBy/PowerByInBuyModal';
+// import { PoweredByInBuyModal } from '../PoweredBy/PowerByInBuyModal';
 import { Processing } from '../Processing';
 import { TIMEOUT_EXTRA_LOADING } from '../../constant';
 import { useUnmountTimeout } from '../../hooks/useUnmountTimeout';
@@ -119,7 +119,7 @@ export const BuyModal: React.FC<BuyModalProps> = ({
         )}
       </div>
 
-      <PoweredByInBuyModal />
+      {/* <PoweredByInBuyModal /> */}
     </Modal>
   );
 };

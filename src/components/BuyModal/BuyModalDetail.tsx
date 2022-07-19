@@ -8,7 +8,7 @@ import { NftVerification } from '../Tooltip/NftVerification';
 import { Viewer } from '../Viewer';
 import { ShopExchangeInfo } from '../../model';
 import { getPrice } from '../../utils/getPrice';
-import { PoweredByInBuyModal } from '../PoweredBy/PowerByInBuyModal';
+// import { PoweredByInBuyModal } from '../PoweredBy/PowerByInBuyModal';
 
 export interface BuyModalDetailProps {
   order: OrderSchema;

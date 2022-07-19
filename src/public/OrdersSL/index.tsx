@@ -16,7 +16,7 @@ import { Dropdown } from "../../components/Dropdown";
 import { Empty } from "../../components/Empty";
 import { InfiniteOrderList } from "../../components/InfiniteOrderList";
 import { LoadingSkeleton } from "../../components/LoadingSkeleton";
-import { PoweredBy } from "../../components/PoweredBy";
+// import { PoweredBy } from "../../components/PoweredBy";
 import { CollectionFilter as CollectionFilterComponent } from "../../components/CollectionFilter";
 import { CollectionFilterDescription } from "../../components/CollectionFilterDescription";
 import { ShopFilter as ShopFilterComponent } from "../../components/ShopFilter";
@@ -284,7 +284,7 @@ export const OrdersSL: React.FC<OrdersProps> = ({
               ) : (
                 emptyView
               )}
-              <PoweredBy />
+              {/* <PoweredBy /> */}
             </div>
           </div>
         </div>
@@ -312,7 +312,7 @@ export const OrdersSL: React.FC<OrdersProps> = ({
           ) : (
             emptyView
           )}
-          <PoweredBy />
+          {/* <PoweredBy /> */}
         </div>
       </div>
     </>
