@@ -5,9 +5,10 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { candyShop } from "../utils/candy-shop";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { MetaTagsPage } from "../utils/Metatags";
 
 const SystemArchitectureFilter: React.FC = () => {
+  MetaTagsPage("SYSTEM ARCHITECTURE","YOU CAN PLACE VARIOUS HOME DESIGNS “PARTS” THAT FIT SYSTEM ARCHITECTURE BOTTOMS-UP APPROACHES.","https://www.homeqube.io/system-architecture");
   const wallet = useAnchorWallet();
 
   return (
