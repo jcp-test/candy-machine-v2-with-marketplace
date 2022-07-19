@@ -1,4 +1,5 @@
-import { Orders, Stat } from "@liqnft/candy-shop";
+import { Stat } from "../public/Stat";
+import { OrdersP } from "../public/OrdersP";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { candyShop } from "../utils/candy-shop";
@@ -33,9 +34,10 @@ const ProductsFilter: React.FC = () => {
           description={""}
           style={{ paddingBottom: 50 }}
         />
-        <Orders
+        <OrdersP
           wallet={wallet}
           candyShop={candyShop}
+          defaultFilter={{ collection: "1", shop: "" }}
           walletConnectComponent={<WalletMultiButton />}
           filters={FILTERS}
         />

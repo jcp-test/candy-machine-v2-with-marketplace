@@ -41,6 +41,7 @@ import StructuralLegaciesFilter from "./views/FilterStructuralLegacies";
 import HomeDesignFilter from "./views/FilterHomeDesign";
 import SystemArchitectureFilter from "./views/FilterSystemArchitecture";
 import ProductsFilter from "./views/FilterProducts";
+import Fetch from "./views/Fetch";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const candyMachineId = new anchor.web3.PublicKey(
@@ -133,6 +134,15 @@ const App = () => {
                           </>
                         }
                       />
+                       <Route
+                        path={RouteName.StructuralLegaciesFilter}
+                        element={
+                          <>
+                            <TopNav />
+                            <StructuralLegaciesFilter />
+                          </>
+                        }
+                      />
                       <Route
                         path={RouteName.MarketplaceWithFilter}
                         element={
@@ -144,11 +154,11 @@ const App = () => {
                       />
 
                       <Route
-                        path={RouteName.StructuralLegaciesFilter}
+                        path={RouteName.MyCollection}
                         element={
                           <>
                             <TopNav />
-                            <StructuralLegaciesFilter />
+                            <Fetch />
                           </>
                         }
                       />

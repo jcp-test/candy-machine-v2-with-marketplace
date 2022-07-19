@@ -66,33 +66,35 @@ export const Stat: React.FC<StatProps> = ({ title, description, style, candyShop
   const totalVolume = getTotalVolume(candyShop, stat);
 
   return (
-    <div style={style}>
-      <div className="candy-container">
-        <div className="candy-stat-component-container">
-          <div>
-            <div className="candy-stat-component-title">{title}</div>
-            <div className="candy-stat-component-description">{description}</div>
-          </div>
-          <div className="candy-stat-component-table">
-            <div className="candy-stat-component-item">
-              <div className="candy-label">FLOOR PRICE</div>
-              <div className="candy-value-lg">
-                {floorPrice === null ? 'N/A' : `${floorPrice} ${candyShop.currencySymbol}`}
-              </div>
-            </div>
-            <div className="candy-stat-component-item">
-              <div className="candy-label">TOTAL LISTED</div>
-              <div className="candy-value-lg">{totalListed}</div>
-            </div>
-            <div className="candy-stat-component-item">
-              <div className="candy-label">VOLUME</div>
-              <div className="candy-value-lg">
-                {totalVolume} {candyShop.currencySymbol}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+    </>
+    // <div style={style}>
+    //   <div className="candy-container">
+    //     <div className="candy-stat-component-container">
+    //       {/* <div>
+    //         <div className="candy-stat-component-title">{title}</div>
+    //         <div className="candy-stat-component-description">{description}</div>
+    //       </div>
+    //       <div className="candy-stat-component-table">
+    //         <div className="candy-stat-component-item">
+    //           <div className="candy-label">FLOOR PRICE</div>
+    //           <div className="candy-value-lg">
+    //             {floorPrice === null ? 'N/A' : `${floorPrice} ${candyShop.currencySymbol}`}
+    //           </div>
+    //         </div>
+    //         <div className="candy-stat-component-item">
+    //           <div className="candy-label">TOTAL LISTED</div>
+    //           <div className="candy-value-lg">{totalListed}</div>
+    //         </div>
+    //         <div className="candy-stat-component-item">
+    //           <div className="candy-label">VOLUME</div>
+    //           <div className="candy-value-lg">
+    //             {totalVolume} {candyShop.currencySymbol}
+    //           </div>
+    //         </div>
+    //       </div> */}
+    //     </div>
+    //   </div>
+    // </div>
   );
 };

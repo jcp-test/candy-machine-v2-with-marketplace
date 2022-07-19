@@ -15,6 +15,7 @@ export interface CollectionFilter {
   identifier: number | Array<number>;
   // attribute?: { [key: string]: string };
   description: string;
+  qubeClaims : string;
 }
 
 export interface ShopFilter {

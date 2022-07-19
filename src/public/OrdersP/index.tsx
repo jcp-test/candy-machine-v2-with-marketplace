@@ -18,6 +18,7 @@ import { InfiniteOrderList } from '../../components/InfiniteOrderList';
 import { LoadingSkeleton } from '../../components/LoadingSkeleton';
 import { PoweredBy } from '../../components/PoweredBy';
 import { CollectionFilter as CollectionFilterComponent } from '../../components/CollectionFilter';
+import { CollectionFilterDescription } from "../../components/CollectionFilterDescription";
 import { ShopFilter as ShopFilterComponent } from '../../components/ShopFilter';
 
 import { useValidateStatus } from '../../hooks/useValidateStatus';
@@ -45,7 +46,7 @@ interface OrdersProps {
 /**
  * React component that displays a list of orders
  */
-export const Orders: React.FC<OrdersProps> = ({
+export const OrdersP: React.FC<OrdersProps> = ({
   walletConnectComponent,
   wallet,
   url,
@@ -212,36 +213,23 @@ export const Orders: React.FC<OrdersProps> = ({
       setSelectedShop(undefined);
       setShopFilter(undefined);
     };
-    const showAll = Boolean(filters && shopFilters);
-    const selectAll = showAll && !selectedCollection && !selectedShop && !shopFilter && !collectionFilter;
 
     return (
-      <div className="candy-orders-container" style={style}>
-        <div className="candy-container">
-          <div className="candy-orders-sort candy-orders-sort-right">
-            <Search onSearch={onSearchNft} placeholder="Search NFT name" />
-            <Dropdown
-              items={SORT_OPTIONS}
-              selectedItem={sortedByOption}
-              onSelectItem={(item) => {
-                setSortedByOption(item);
-                setStartIndex(0);
-              }}
-              defaultValue={SORT_OPTIONS[0]}
-            />
-          </div>
-
-          <div className="candy-orders-filter">
-            <div className="candy-filter">
-              <div className="candy-filter-title">Filters</div>
-              {showAll && (
-                <div
-                  onClick={onClickAll}
-                  className={selectAll ? 'candy-filter-all candy-filter-all-active' : 'candy-filter-all'}
-                >
-                  All
-                </div>
+      <>
+        <div className="candy-orders-container" style={style}>
+          <div className="candy-container">
+          {Boolean(filters) && (
+                <CollectionFilterDescription
+                  onChange={onChangeCollection}
+                  selected={selectedCollection}
+                  candyShop={candyShop}
+                  filters={filters}
+                  selectedManual={collectionFilter}
+                  shopId={selectedShop?.candyShopAddress || shopFilter?.shopId}
+                />
               )}
+            <nav className="candy-orders-filter menu2 text-uppercase pb-3 pt-3">
+            
               {Boolean(filters) && (
                 <CollectionFilterComponent
                   onChange={onChangeCollection}
@@ -250,9 +238,9 @@ export const Orders: React.FC<OrdersProps> = ({
                   filters={filters}
                   selectedManual={collectionFilter}
                   shopId={selectedShop?.candyShopAddress || shopFilter?.shopId}
-                  showAllFilters={showAll}
                 />
               )}
+
               {Boolean(shopFilters) === true && (
                 <ShopFilterComponent
                   onChange={onChangeShop}
@@ -260,28 +248,22 @@ export const Orders: React.FC<OrdersProps> = ({
                   selected={selectedShop}
                   filters={shopFilters}
                   selectedManual={shopFilter}
-                  showAllFilters={showAll}
                 />
               )}
-
-              {/* <div className="candy-filter-title">Attributes</div>
-              {FILTER_ATTRIBUTES_MOCK: constant/Orders}
-               {FILTER_ATTRIBUTES_MOCK.map((attr) => {
-                return (
-                  <div className="candy-filter-attribute">
-                    <span>{attr.name}</span>
-                    <Dropdown items={attr.options} onSelectItem={onFilterAttribute} placeholder={attr.placeholder} />
-                  </div>
-                );
-              })} */}
-            </div>
+            </nav>
             <div className="candy-orders-content">
-              {loading ? <LoadingSkeleton /> : orders.length ? infiniteOrderListView : emptyView}
+              {loading ? (
+                <LoadingSkeleton />
+              ) : orders.length ? (
+                infiniteOrderListView
+              ) : (
+                emptyView
+              )}
               <PoweredBy />
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -298,7 +280,13 @@ export const Orders: React.FC<OrdersProps> = ({
             />
             <Search onSearch={onSearchNft} placeholder="Search NFT name" />
           </div>
-          {loading ? <LoadingSkeleton /> : orders.length ? infiniteOrderListView : emptyView}
+          {loading ? (
+            <LoadingSkeleton />
+          ) : orders.length ? (
+            infiniteOrderListView
+          ) : (
+            emptyView
+          )}
           <PoweredBy />
         </div>
       </div>
@@ -306,8 +294,16 @@ export const Orders: React.FC<OrdersProps> = ({
   );
 };
 
-function getUniqueIdentifiers(identifiers: number[] = [], filterIdentifiers: number | number[] = []) {
+function getUniqueIdentifiers(
+  identifiers: number[] = [],
+  filterIdentifiers: number | number[] = []
+) {
   return [
-    ...new Set([...identifiers, ...(typeof filterIdentifiers === 'number' ? [filterIdentifiers] : filterIdentifiers)])
+    ...new Set([
+      ...identifiers,
+      ...(typeof filterIdentifiers === "number"
+        ? [filterIdentifiers]
+        : filterIdentifiers),
+    ]),
   ];
 }

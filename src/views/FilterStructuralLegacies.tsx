@@ -1,4 +1,6 @@
-import { Orders, Stat } from "@liqnft/candy-shop";
+// import { Orders, Stat } from "@liqnft/candy-shop";
+import { Stat } from "../public/Stat";
+import { OrdersSL } from "../public/OrdersSL";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { candyShop } from "../utils/candy-shop";
@@ -12,12 +14,12 @@ const StructuralLegaciesFilter: React.FC = () => {
     <>
       <nav className="candy-orders-filter menu text-uppercase pb-3 pt-3">
         <li>
-          <NavLink to="/structural-legacies" className="active">Structural Legacies</NavLink>
+          <NavLink to="/structural-legacies" className="active">
+            Structural Legacies
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/home-designs">
-            Home Designs
-          </NavLink>
+          <NavLink to="/home-designs">Home Designs</NavLink>
         </li>
         <li>
           <NavLink to="/system-architecture">SYSTEM ARCHITECTURE</NavLink>
@@ -33,9 +35,10 @@ const StructuralLegaciesFilter: React.FC = () => {
           description={""}
           style={{ paddingBottom: 50 }}
         />
-        <Orders
+        <OrdersSL
           wallet={wallet}
           candyShop={candyShop}
+          defaultFilter={{ collection: "1", shop: "" }}
           walletConnectComponent={<WalletMultiButton />}
           filters={FILTERS}
         />

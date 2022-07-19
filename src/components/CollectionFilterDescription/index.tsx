@@ -27,7 +27,7 @@ interface CollectionFilterProps {
 const Logger = "CandyShopUI/Collection";
 const LIMIT = 10;
 
-export const CollectionFilter: React.FC<CollectionFilterProps> = ({
+export const CollectionFilterDescription: React.FC<CollectionFilterProps> = ({
   onChange,
   selected,
   candyShop,
@@ -119,19 +119,15 @@ export const CollectionFilter: React.FC<CollectionFilterProps> = ({
         {filteredList.map((filter) => {
           return (
             <>
-              <li
-                key={filter.name}
-                className={
-                  selectedManual?.collectionId === filter.collectionId
-                    ? "selected"
-                    : ""
-                }
-                onClick={onChange(filter, "manual")}
-              >
-                {filter.name}{" "}
-                <span className="text-grey">{filter.qubeClaims}</span>
-              </li>
-              <p className="navbar-lining">|</p>
+              {selectedManual?.collectionId === filter.collectionId ? (
+                <div className="item-description text-uppercase">
+                  <p className="SL-Des">
+                    {filter.description}
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
             </>
           );
         })}

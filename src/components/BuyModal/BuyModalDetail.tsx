@@ -62,8 +62,10 @@ export const BuyModalDetail: React.FC<BuyModalDetailProps> = ({
         <div className="candy-buy-modal-control">
           <div>
             <div className="candy-label">PRICE</div>
-            <div className="candy-price">{orderPrice ? `${orderPrice} ` : 'N/A'}</div>
-            <img src="./solLogo.svg" className="solLogo" alt="" />
+            <div className="candy-price">
+              {orderPrice ? `${orderPrice}` : "N/A"}
+              <img src="./solLogo.svg" className="solLogo" alt="" />
+            </div>
           </div>
           {!walletPublicKey ? (
             walletConnectComponent

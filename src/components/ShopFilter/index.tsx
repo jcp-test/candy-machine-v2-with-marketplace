@@ -15,7 +15,6 @@ interface ShopFilterProps {
   candyShop: CandyShop;
   filters?: ShopFilterInfo[] | boolean;
   selectedManual?: ShopFilterInfo;
-  showAllFilters: boolean;
 }
 
 const Logger = 'CandyShopUI/ShopFilter';
@@ -27,7 +26,6 @@ export const ShopFilter: React.FC<ShopFilterProps> = ({
   candyShop,
   filters,
   selectedManual,
-  showAllFilters
 }) => {
   const [options, setOptions] = useState<CandyShopResponse[]>([]);
   const [offset, setOffset] = useState<number>(0);
@@ -101,11 +99,6 @@ export const ShopFilter: React.FC<ShopFilterProps> = ({
           </div>
         ) : null}
         <ul>
-          {!showAllFilters && (
-            <li key="All" onClick={onChange(undefined, 'manual')} className={selectedManual ? '' : 'selected'}>
-              All
-            </li>
-          )}
           {filteredList.map((filter) => (
             <li
               key={filter.name}

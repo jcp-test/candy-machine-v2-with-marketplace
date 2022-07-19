@@ -212,8 +212,8 @@ export const Orders: React.FC<OrdersProps> = ({
       setSelectedShop(undefined);
       setShopFilter(undefined);
     };
-    const showAll = Boolean(filters && shopFilters);
-    const selectAll = showAll && !selectedCollection && !selectedShop && !shopFilter && !collectionFilter;
+
+
 
     return (
       <div className="candy-orders-container" style={style}>
@@ -234,14 +234,6 @@ export const Orders: React.FC<OrdersProps> = ({
           <div className="candy-orders-filter">
             <div className="candy-filter">
               <div className="candy-filter-title">Filters</div>
-              {showAll && (
-                <div
-                  onClick={onClickAll}
-                  className={selectAll ? 'candy-filter-all candy-filter-all-active' : 'candy-filter-all'}
-                >
-                  All
-                </div>
-              )}
               {Boolean(filters) && (
                 <CollectionFilterComponent
                   onChange={onChangeCollection}
@@ -250,7 +242,6 @@ export const Orders: React.FC<OrdersProps> = ({
                   filters={filters}
                   selectedManual={collectionFilter}
                   shopId={selectedShop?.candyShopAddress || shopFilter?.shopId}
-                  showAllFilters={showAll}
                 />
               )}
               {Boolean(shopFilters) === true && (
@@ -260,7 +251,6 @@ export const Orders: React.FC<OrdersProps> = ({
                   selected={selectedShop}
                   filters={shopFilters}
                   selectedManual={shopFilter}
-                  showAllFilters={showAll}
                 />
               )}
 
