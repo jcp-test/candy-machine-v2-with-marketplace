@@ -181,7 +181,7 @@ export const CreateAuction: React.FC<CreateAuctionProps> = ({
 
   const CreateAuctionSelectStage = (
     <>
-      <div className="candy-auction-description">Select the NFT you want to put up for auction</div>
+      <div className="candy-auction-description p-3">Select the NFT you want to put up for auction</div>
       {loading && <LoadingSkeleton />}
       {!loading && availableAuctionNfts.length > 0 && (
         <>
@@ -211,7 +211,7 @@ export const CreateAuction: React.FC<CreateAuctionProps> = ({
   );
 
   const CreateAuctionStages = (
-    <div className="candy-container">
+    <div className="candy-container p-3">
       {stage === AuctionStage.SELECT && CreateAuctionSelectStage}
       {stage === AuctionStage.FORM && selected ? (
         <AuctionForm
@@ -245,7 +245,7 @@ export const CreateAuction: React.FC<CreateAuctionProps> = ({
   );
 
   return (
-    <div className="candy-auction">
+    <div className="candy-auction p-3">
       <div className="candy-title" id="candy-auction-title-id">
         Create Auction
       </div>

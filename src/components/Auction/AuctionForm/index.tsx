@@ -1,17 +1,17 @@
-import './style.less';
-import React, { useState, useEffect } from 'react';
-
-import { Checkbox } from '../../Checkbox';
-import { AuctionNftHeader } from '../AuctionNftHeader';
+import "./style.less";
+import React, { useState, useEffect } from "react";
+import { fetchNFTByMintAddress } from '@liqnft/candy-shop-sdk';
+import { Checkbox } from "../../Checkbox";
+import { AuctionNftHeader } from "../AuctionNftHeader";
 
 import { Auctions } from "@liqnft/candy-shop";
-import { SingleTokenInfo } from '@liqnft/candy-shop-sdk';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import { AuctionDetails } from '../AuctionDetails';
+import { SingleTokenInfo } from "@liqnft/candy-shop-sdk";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { AuctionDetails } from "../AuctionDetails";
+import { Nft, Order as OrderSchema } from "@liqnft/candy-shop-types";
+import { NftAuctionAttributes } from "../../NftAuctionAttributes";
 dayjs.extend(utc);
-
-
 
 interface AuctionFormProps {
   onSubmit: (...args: any) => void;
@@ -23,17 +23,17 @@ interface AuctionFormProps {
 }
 
 enum CheckEnum {
-  PERIOD = 'biddingPeriod',
-  CLOCK_FORMAT = 'clockFormat',
-  BUY_NOW = 'buyNow',
-  START_NOW = 'startNow'
+  PERIOD = "biddingPeriod",
+  CLOCK_FORMAT = "clockFormat",
+  BUY_NOW = "buyNow",
+  START_NOW = "startNow",
 }
 
 export type FormType = {
   startingBid: string;
   buyNowPrice: string;
   biddingPeriod: number;
-  clockFormat: 'PM' | 'AM';
+  clockFormat: "PM" | "AM";
   auctionHour: string;
   auctionMinute: string;
   buyNow?: boolean;
@@ -43,9 +43,9 @@ export type FormType = {
 };
 
 const VALIDATE_MESSAGE: { [key: string]: string } = {
-  startingBid: 'Starting Bid must be greater than 0.',
-  tickSize: 'Minimum Incremental Bid must be greater than 0.',
-  buyNowPrice: 'Buy Now Price must be greater than 0.'
+  startingBid: "Starting Bid must be greater than 0.",
+  tickSize: "Minimum Incremental Bid must be greater than 0.",
+  buyNowPrice: "Buy Now Price must be greater than 0.",
 };
 
 export const AuctionForm: React.FC<AuctionFormProps> = ({
@@ -54,20 +54,24 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
   fee,
   nft,
   auctionForm,
-  onBack
+  onBack,
+  
 }) => {
   const [form, setForm] = useState<FormType>({
-    startingBid: '',
-    tickSize: '',
-    buyNowPrice: '',
+    startingBid: "",
+    tickSize: "",
+    buyNowPrice: "",
     biddingPeriod: 24,
-    clockFormat: 'AM',
-    auctionHour: '12',
-    auctionMinute: '00',
+    clockFormat: "AM",
+    auctionHour: "12",
+    auctionMinute: "00",
     startNow: false,
     buyNow: false,
-    startDate: dayjs().add(1, 'd').format('YYYY-MM-DD')
+    startDate: dayjs().add(1, "d").format("YYYY-MM-DD"),
   });
+  const [loadingNftInfo, setLoadingNftInfo] = useState(false);
+  const [nftInfo, setNftInfo] = useState<Nft>();
+  const staticValue = 1;
 
   const onCheck = (key: CheckEnum, value?: any) => (e: any) => {
     e.preventDefault();
@@ -80,20 +84,24 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
   };
 
   const validateInput = (nodeId: string, message: string) => {
-    (document.getElementById(nodeId) as HTMLInputElement)?.setCustomValidity(message);
+    (document.getElementById(nodeId) as HTMLInputElement)?.setCustomValidity(
+      message
+    );
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target as { value: any; name: keyof FormType };
-    if (name !== 'startDate') {
-      validateInput(name, Number(value) > 0 ? '' : VALIDATE_MESSAGE[name]);
+    if (name !== "startDate") {
+      validateInput(name, Number(value) > 0 ? "" : VALIDATE_MESSAGE[name]);
     }
-    if (name === 'buyNowPrice' && form.buyNow) {
+    if (name === "buyNowPrice" && form.buyNow) {
       const minBuyNowPrice = Number(form.startingBid) + Number(form.tickSize);
 
       validateInput(
         name,
-        Number(value) > minBuyNowPrice ? '' : `Buy Now Price must be greater than ${minBuyNowPrice}.`
+        Number(value) > minBuyNowPrice
+          ? ""
+          : `Buy Now Price must be greater than ${minBuyNowPrice}.`
       );
     }
     setForm((prev: FormType) => ({ ...prev, [name]: value }));
@@ -102,9 +110,9 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
   const onSubmitForm = (e: any) => {
     e.preventDefault();
     const VALIDATES: { nodeId: keyof FormType; trigger: boolean }[] = [
-      { nodeId: 'startingBid', trigger: true },
-      { nodeId: 'tickSize', trigger: true },
-      { nodeId: 'buyNowPrice', trigger: Boolean(form.buyNow) }
+      { nodeId: "startingBid", trigger: true },
+      { nodeId: "tickSize", trigger: true },
+      { nodeId: "buyNowPrice", trigger: Boolean(form.buyNow) },
     ];
 
     if (
@@ -129,14 +137,15 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
 
   return (
     <form className="candy-auction-form" onSubmit={onSubmitForm}>
-      <AuctionNftHeader
+      <AuctionDetails
         name={nft.metadata?.data.name}
         ticker={nft.metadata?.data.symbol}
         imgUrl={nft.nftImage}
         edition={nft.edition}
+        description={nft.nftDescription}
       />
 
-      <div className="candy-auction-form-item">
+      <div className="candy-auction-form-item d-none">
         <label htmlFor="startingBid">Starting Bid</label>
         <input
           id="startingBid"
@@ -145,15 +154,15 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
           placeholder="0"
           required
           min={0}
-          value={form['startingBid']}
-          onChange={onChangeInput}
+          value={staticValue}
+          // onChange={onChangeInput}
           onWheel={preventUpdateNumberOnWheel}
           step="any"
         />
         <span className="candy-auction-form-sol">{currencySymbol}</span>
       </div>
 
-      <div className="candy-auction-form-item">
+      <div className="candy-auction-form-item d-none">
         <label htmlFor="tickSize">Minimum Incremental Bid</label>
         <input
           id="tickSize"
@@ -162,24 +171,22 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
           placeholder="0"
           required
           min={0}
-          value={form['tickSize']}
-          onChange={onChangeInput}
+          value={staticValue}
+          // onChange={onChangeInput}
           onWheel={preventUpdateNumberOnWheel}
           step="any"
         />
         <span className="candy-auction-form-sol">{currencySymbol}</span>
       </div>
-      <AuctionDetails
-        name={nft.metadata?.data.name}
-        ticker={nft.metadata?.data.symbol}
-        imgUrl={nft.nftImage}
-        edition={nft.edition}
-        description={nft.nftDescription}
-        attributes={nft.tokenMintAddress}
+
+      <NftAuctionAttributes
+        loading={loadingNftInfo}
+        attributes={nftInfo?.attributes}
       />
-      <div className="candy-action-form-fees">
+
+      <div className="candy-action-form-fees d-none">
         <div>Fees</div>
-        <div>{fee ? `${fee.toFixed(1)}%` : 'n/a'} </div>
+        <div>{fee ? `${fee.toFixed(1)}%` : "n/a"} </div>
       </div>
 
       {/* <Checkbox
@@ -335,9 +342,9 @@ const DO_NOTHING = () => {
 };
 
 const PERIODS = [
-  { label: '1h', value: 1 },
-  { label: '6h', value: 6 },
-  { label: '12h', value: 12 },
-  { label: '24h', value: 24 },
-  { label: '48h', value: 48 }
+  { label: "1h", value: 1 },
+  { label: "6h", value: 6 },
+  { label: "12h", value: 12 },
+  { label: "24h", value: 24 },
+  { label: "48h", value: 48 },
 ];

@@ -7,13 +7,12 @@ interface AuctionNftHeaderProps {
   ticker?: string;
   edition?: string | number;
   description?: string;
-  attributes? :string;
 }
 
-export const AuctionDetails: React.FC<AuctionNftHeaderProps> = ({ name, imgUrl, ticker, edition, description, attributes}) => {
+export const AuctionDetails: React.FC<AuctionNftHeaderProps> = ({ name, imgUrl, ticker, edition, description}) => {
   return (
-    <div className="candy-auction-nft-header">
-      <img src={imgUrl} alt={name} />
+    <div className="candy-auction-nft-header d-block">
+      <img src={imgUrl} alt={name} className="nftAuctionImg" />
       <div>
         <div className="candy-auction-nft-header-name">
           {name}
@@ -21,7 +20,6 @@ export const AuctionDetails: React.FC<AuctionNftHeaderProps> = ({ name, imgUrl, 
         </div>
         <div className="candy-auction-nft-header-ticker">{ticker}</div>
         <p>{description}</p>
-        <p>{attributes}</p>
       </div>
     </div>
   );
