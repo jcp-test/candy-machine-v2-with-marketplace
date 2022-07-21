@@ -42,6 +42,7 @@ import HomeDesignFilter from "./views/FilterHomeDesign";
 import SystemArchitectureFilter from "./views/FilterSystemArchitecture";
 import ProductsFilter from "./views/FilterProducts";
 import Fetch from "./views/Fetch";
+import Auction from "./views/Auction";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const candyMachineId = new anchor.web3.PublicKey(
@@ -251,6 +252,15 @@ const App = () => {
                           <>
                             <TopNav showCurrencyToggle={true} />
                             <MultiCurrencySell />
+                          </>
+                        }
+                      />
+                      <Route
+                        path={RouteName.auction}
+                        element={
+                          <>
+                            <TopNav showCurrencyToggle={true} />
+                            <Auction />
                           </>
                         }
                       />

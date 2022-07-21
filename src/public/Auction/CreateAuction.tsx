@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
+import './create-auction-style.less';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
 import { web3 } from '@project-serum/anchor';
 import {
@@ -21,7 +22,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
-import './create-auction-style.less';
+
 
 interface CreateAuctionProps {
   wallet: AnchorWallet | undefined;
@@ -65,9 +66,9 @@ export const CreateAuction: React.FC<CreateAuctionProps> = ({
 
   const isShopCreator = useCallback(
     (walletAddress: string) => {
-      return walletAddress === candyShop.candyShopCreatorAddress.toString();
+      return walletAddress === wallet?.publicKey.toString();;
     },
-    [candyShop]
+    [wallet]
   );
 
   const getUserNFTFromBatch = useCallback((batchNFTs: SingleTokenInfo[]) => {

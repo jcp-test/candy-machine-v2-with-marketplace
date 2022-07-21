@@ -1,14 +1,17 @@
+import './style.less';
 import React, { useState, useEffect } from 'react';
 
 import { Checkbox } from '../../Checkbox';
 import { AuctionNftHeader } from '../AuctionNftHeader';
 
+import { Auctions } from "@liqnft/candy-shop";
 import { SingleTokenInfo } from '@liqnft/candy-shop-sdk';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { AuctionDetails } from '../AuctionDetails';
 dayjs.extend(utc);
 
-import './style.less';
+
 
 interface AuctionFormProps {
   onSubmit: (...args: any) => void;
@@ -166,13 +169,20 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
         />
         <span className="candy-auction-form-sol">{currencySymbol}</span>
       </div>
-
+      <AuctionDetails
+        name={nft.metadata?.data.name}
+        ticker={nft.metadata?.data.symbol}
+        imgUrl={nft.nftImage}
+        edition={nft.edition}
+        description={nft.nftDescription}
+        attributes={nft.tokenMintAddress}
+      />
       <div className="candy-action-form-fees">
         <div>Fees</div>
         <div>{fee ? `${fee.toFixed(1)}%` : 'n/a'} </div>
       </div>
 
-      <Checkbox
+      {/* <Checkbox
         onClick={onCheckbox(CheckEnum.BUY_NOW)}
         checked={Boolean(form[CheckEnum.BUY_NOW])}
         id="auction-buy-now"
@@ -308,7 +318,7 @@ export const AuctionForm: React.FC<AuctionFormProps> = ({
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="candy-auction-confirm-button-container">
         <button className="candy-button candy-button-default" onClick={onBack}>

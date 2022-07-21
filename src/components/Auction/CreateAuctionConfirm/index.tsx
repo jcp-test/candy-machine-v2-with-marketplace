@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../Auction/CreateAuctionConfirm/style.less';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
 import { web3, BN } from '@project-serum/anchor';
 import { CandyShop, SingleTokenInfo } from '@liqnft/candy-shop-sdk';
@@ -13,7 +14,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
-import './style.less';
+
 
 interface CreateAuctionProps {
   wallet: AnchorWallet | undefined;
