@@ -14,12 +14,12 @@ interface CurrencyType {
 }
 
 const CurrencyContext = createContext<CurrencyType>({
-  currency: 'SOL',
+  currency: 'DAVERU',
   setCurrency: () => {},
   getCurrencySettings: () => {},
   currencyOptions: [{
-    currencySymbol: 'SOL',
-    treasuryMint: 'So11111111111111111111111111111111111111112',
+    currencySymbol: 'VERU',
+    treasuryMint: '5YU1m4qUFrTnedrM29BDmBD8cmAkrVSqiRPKbfhPvFRt',
     currencyDecimals: 9,
     priceDecimals: 3,
     volumeDecimals: 1

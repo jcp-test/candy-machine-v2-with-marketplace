@@ -1,27 +1,19 @@
-import { CandyShop } from "@liqnft/candy-shop-sdk";
 // import { Sell } from "@liqnft/candy-shop";
-import { UserCollection } from "../public/MyCollection";
+// import { Sell } from "../public/Sell";
+import { AuctionTest } from "../public/AuctionTest";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { PublicKey } from "@solana/web3.js";
+import { CandyShop } from "@liqnft/candy-shop-sdk";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { candyShop } from "../utils/candy-shop";
+import { PublicKey } from "@solana/web3.js";
 import { useCurrency } from "../components/Currency";
-import styled from "styled-components";
 import { useMemo } from "react";
 import {
   CANDY_SHOP_CREATOR_ADDRESS,
   CANDY_SHOP_PROGRAM_ID,
   NETWORK,
 } from "../utils/candy-shop";
-import { Auctions } from "@liqnft/candy-shop";
-import { CreateAuction } from "../public/Auction";
-
-const DesContainer = styled.div`
-  width: 100%;
-
-  .wallet-adapter-button {
-    margin: 0 auto;
-  }
-`;
+import styled from "styled-components";
 
 const Auction: React.FC = () => {
   const wallet = useAnchorWallet();
@@ -43,28 +35,25 @@ const Auction: React.FC = () => {
   if (!candyShop) {
     return <></>;
   }
-
   return (
     <DesContainer>
-      {/* <UserCollection
+      <h1 style={{ marginBottom: 30 }}>My Collection</h1>
+      <AuctionTest
         wallet={wallet}
         candyShop={candyShop}
         walletConnectComponent={<WalletMultiButton />}
         enableCacheNFT={true}
-      /> */}
-      <CreateAuction
-        candyShop={candyShop}
-        wallet={wallet}
-        walletConnectComponent={<WalletMultiButton />}
-        cacheUserNFT={true}
       />
-      {/* <Auctions
-        candyShop={candyShop}
-        wallet={wallet}
-        walletConnectComponent={<WalletMultiButton />}
-      /> */}
     </DesContainer>
   );
 };
 
 export default Auction;
+
+const DesContainer = styled.div`
+  width: 100%;
+
+  .wallet-adapter-button {
+    margin: 0 auto;
+  }
+`;
