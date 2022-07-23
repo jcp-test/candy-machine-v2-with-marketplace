@@ -46,34 +46,7 @@ class ClaimQubes extends Component {
   }
   
 
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   const { URL, email, subject } = this.state;
-  //   let templateParams = {
-  //     from_name: email,
-  //     to_name: "GAyktw5BJ0aDCY2Wb",
-  //     subject: subject,
-  //     message_html: URL,
-  //   };
-  //   emailjs.send(
-  //     "service_7lhctnf",
-  //     "template_hb7zy83",
-  //     templateParams,
-  //     "GAyktw5BJ0aDCY2Wb"
-  //   );
-  //   this.resetForm();
-  // }
-  // resetForm() {
-  //   this.setState({
-  //     name: "",
-  //     email: "",
-  //     subject: "",
-  //     message: "",
-  //   });
-  // }
-  // handleChange = (param, e) => {
-  //   this.setState({ [param]: e.target.value });
-  // };
+  
   render() {
     const { isTrueVal, URL } = this.state;
     
